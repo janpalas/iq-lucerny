@@ -187,3 +187,19 @@ el('next-btn').addEventListener('click', () => load(index + 1));
 document.querySelector('.lg-lantern').innerHTML = LANTERN_SVG;
 document.querySelector('.lg-guard').innerHTML = GUARD_SVG;
 load(index);
+
+// Přepínání typu úloh v záhlaví (Lucerny / Matice).
+const MODES = { lucerny: 'Lucerny', matice: 'Matice' };
+function setMode(mode) {
+  if (!MODES[mode]) mode = 'lucerny';
+  store.set('mode', mode);
+  document.body.dataset.mode = mode;
+  document.title = MODES[mode];
+  for (const tab of document.querySelectorAll('.mode-tab')) tab.setAttribute('aria-selected', String(tab.dataset.mode === mode));
+  el('mode-lucerny').hidden = mode !== 'lucerny';
+  el('mode-matice').hidden = mode !== 'matice';
+  el('puzzle-select').hidden = mode !== 'lucerny';
+  el('mx-select').hidden = mode !== 'matice';
+}
+for (const tab of document.querySelectorAll('.mode-tab')) tab.addEventListener('click', () => setMode(tab.dataset.mode));
+setMode(store.get('mode', 'lucerny'));

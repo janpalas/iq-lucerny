@@ -9,12 +9,19 @@
 <body>
   <main class="app">
     <header class="top">
-      <h1>Lucerny</h1>
+      <h1 class="sr-only">Logické úlohy</h1>
+      <nav class="modes" role="tablist" aria-label="Typ úloh">
+        <button class="mode-tab" type="button" role="tab" data-mode="lucerny" aria-selected="true">Lucerny</button>
+        <button class="mode-tab" type="button" role="tab" data-mode="matice" aria-selected="false">Matice</button>
+      </nav>
       <label class="picker">
         <span class="sr-only">Vybrat úlohu</span>
         <select id="puzzle-select"></select>
+        <select id="mx-select" hidden></select>
       </label>
     </header>
+
+    <div id="mode-lucerny">
 
     <details class="rules">
       <summary>Pravidla</summary>
@@ -60,9 +67,42 @@
       <span><i class="lg lg-wall"></i> zeď</span>
       <span><i class="lg lg-guard"></i> hlídač</span>
     </footer>
+    </div>
+
+    <div id="mode-matice" hidden>
+      <details class="rules">
+        <summary>Pravidla</summary>
+        <ul>
+          <li>Obrázky v řadě nebo v mřížce se mění podle skrytého pravidla – tvar, počet, výplň, otočení, poloha…</li>
+          <li>U mřížky 3×3 platí pravidlo v řádcích i ve sloupcích.</li>
+          <li>Odhal pravidlo a vyber z možností <strong>A–E</strong> obrázek, který patří místo otazníku.</li>
+          <li>Možnost lze zvolit i klávesou A–E.</li>
+        </ul>
+      </details>
+
+      <div class="toolbar">
+        <span id="mx-info" class="info"></span>
+      </div>
+
+      <div class="mx-stage">
+        <div id="mx-board" class="mx-board"></div>
+      </div>
+
+      <p class="mx-prompt">Který obrázek patří místo otazníku?</p>
+      <div id="mx-options" class="mx-options" role="group" aria-label="Možnosti odpovědi"></div>
+
+      <div id="mx-result" class="result" hidden></div>
+
+      <div class="actions">
+        <button id="mx-done" class="btn primary" type="button">Hotovo</button>
+        <button id="mx-next" class="btn primary" type="button" hidden>Další úloha →</button>
+      </div>
+    </div>
   </main>
 
   <script src="puzzles.js"></script>
+  <script src="matrix-puzzles.js"></script>
   <script src="app.js"></script>
+  <script src="matrix.js"></script>
 </body>
 </html>
