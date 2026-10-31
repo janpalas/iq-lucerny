@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lucerny</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>Lucerny</h1>
+      <label class="picker">
+        <span class="sr-only">Vybrat úlohu</span>
+        <select id="puzzle-select"></select>
+      </label>
+    </header>
+
+    <details class="rules">
+      <summary>Pravidla</summary>
+      <ul>
+        <li>Rozmísti do sítě <strong>co nejméně luceren</strong> tak, aby byla nasvícena všechna volná pole.</li>
+        <li>Lucerna svítí rovně nahoru, dolů, doleva a doprava až ke zdi. Diagonálně nesvítí.</li>
+        <li>Světlo nesmí dopadnout na <strong>hlídače</strong>.</li>
+        <li>Lucerny nesmí svítit proti sobě (nesmí být ve stejné řadě či sloupci bez zdi mezi nimi).</li>
+        <li>Každá úloha má právě jedno řešení s minimálním počtem luceren.</li>
+      </ul>
+    </details>
+
+    <div class="toolbar">
+      <span id="puzzle-info" class="info"></span>
+      <label class="switch">
+        <input type="checkbox" id="rays-toggle">
+        <span class="track"><span class="thumb"></span></span>
+        Zobrazit paprsky
+      </label>
+    </div>
+
+    <section id="play" class="boards">
+      <figure class="board-wrap">
+        <div id="board" class="board"></div>
+        <figcaption id="board-caption" class="caption"></figcaption>
+      </figure>
+      <figure id="solution-wrap" class="board-wrap" hidden>
+        <div id="solution-board" class="board"></div>
+        <figcaption class="caption">Správné řešení</figcaption>
+      </figure>
+    </section>
+
+    <div id="result" class="result" hidden></div>
+
+    <div class="actions">
+      <button id="clear-btn" class="btn secondary" type="button">Vymazat</button>
+      <button id="done-btn" class="btn primary" type="button">Hotovo</button>
+      <button id="next-btn" class="btn primary" type="button" hidden>Další úloha →</button>
+    </div>
+
+    <footer class="legend">
+      <span><i class="lg lg-lantern"></i> lucerna</span>
+      <span><i class="lg lg-wall"></i> zeď</span>
+      <span><i class="lg lg-guard"></i> hlídač</span>
+    </footer>
+  </main>
+
+  <script src="puzzles.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
