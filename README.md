@@ -37,8 +37,8 @@ a náročnosti prohledávání.
 
 ## Matice
 
-Řada nebo mřížka 3×3 obrázků, které se mění podle skrytého pravidla (tvar, počet, výplň,
-otočení, poloha, skládání čar…). Jeden obrázek chybí a hráč vybírá správný z možností A–E.
+Řada nebo mřížka 3×3 barevných obrázků, které se mění podle skrytého pravidla (opakující
+se vzor, tvar, barva, počet, velikost, otočení, poloha). Obtížnost odpovídá zhruba 1. třídě ZŠ. Jeden obrázek chybí a hráč vybírá správný z možností A–E.
 Po vyhodnocení se zobrazí vysvětlení pravidla.
 
 Přepínače nad zadáním:

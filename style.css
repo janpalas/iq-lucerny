@@ -20,7 +20,10 @@
   --accent: #b9770e;
   --accent-ink: #ffffff;
   --fig: #22201c;
-  --fig-mid: #a9a296;
+  --c-red: #e5483b;
+  --c-blue: #2f7fd8;
+  --c-green: #3aa65a;
+  --c-yellow: #f5c518;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -43,7 +46,10 @@
     --accent: #e0a33a;
     --accent-ink: #1b1a18;
     --fig: #ece8df;
-    --fig-mid: #7a746a;
+    --c-red: #ef5a4d;
+    --c-blue: #4a95ea;
+    --c-green: #4cbb6c;
+    --c-yellow: #f5c518;
   }
 }
 
@@ -189,8 +195,10 @@ button.cell:focus-visible { outline: 3px solid var(--accent); outline-offset: -3
 
 /* ---- Matice ---- */
 .f-white { fill: var(--surface); }
-.f-gray { fill: var(--fig-mid); }
-.f-black { fill: currentColor; }
+.f-red { fill: var(--c-red); }
+.f-blue { fill: var(--c-blue); }
+.f-green { fill: var(--c-green); }
+.f-yellow { fill: var(--c-yellow); }
 
 .mx-stage { display: flex; justify-content: center; }
 .mx-board {
@@ -213,8 +221,6 @@ button.cell:focus-visible { outline: 3px solid var(--accent); outline-offset: -3
   .mx-board.row { --gap: 4px; --pad: 8px; }
 }
 .mx-cell svg, .mx-opt svg { width: 100%; height: 100%; display: block; overflow: visible; }
-.mx-guide { fill: none; stroke: var(--border); stroke-width: 1.5; stroke-dasharray: 3 4; }
-.mx-line { stroke-width: 4.5; stroke-linecap: round; }
 .mx-missing {
   display: grid; place-items: center;
   border: 2px dashed var(--muted); border-radius: 10px;

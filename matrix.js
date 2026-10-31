@@ -10,15 +10,10 @@
     const ys = pts.map(p => p[1]), dy = (Math.min(...ys) + Math.max(...ys)) / 2;
     return pts.map(([x, y]) => [x, y - dy]);
   }
-  // Pravidelný k-úhelník s vodorovnou spodní hranou.
-  const poly = k => recenter(Array.from({ length: k }, (_, i) => {
-    const a = Math.PI / 2 + Math.PI / k + 2 * Math.PI * i / k;
-    return [Math.cos(a), Math.sin(a)];
-  }));
   const UNIT = {
     square: [[-0.8, -0.8], [0.8, -0.8], [0.8, 0.8], [-0.8, 0.8]],
     diamond: [[0, -1], [0.78, 0], [0, 1], [-0.78, 0]],
-    triangle: poly(3), pentagon: poly(5), hexagon: poly(6),
+    triangle: recenter([[0, -1], [0.87, 0.5], [-0.87, 0.5]]),
     star: recenter(Array.from({ length: 10 }, (_, i) => {
       const a = -Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? 0.42 : 1;
       return [r * Math.cos(a), r * Math.sin(a)];
@@ -27,40 +22,21 @@
       [-0.3, 0.3], [-1, 0.3], [-1, -0.3], [-0.3, -0.3]],
     arrow: [[0, -1], [0.62, -0.15], [0.24, -0.15], [0.24, 1], [-0.24, 1], [-0.24, -0.15], [-0.62, -0.15]],
   };
-  for (let k = 3; k <= 9; k++) UNIT['poly' + k] = poly(k);
-
-  const SEGS = {
-    t: [14, 14, 86, 14], b: [14, 86, 86, 86], l: [14, 14, 14, 86], r: [86, 14, 86, 86],
-    d1: [14, 14, 86, 86], d2: [86, 14, 14, 86], v: [50, 14, 50, 86], h: [14, 50, 86, 50],
-  };
 
   const r2 = n => Math.round(n * 100) / 100;
-  const fillAttr = (fill, pat) => fill === 'striped' ? `fill="url(#${pat})"` : `class="f-${fill}"`;
 
-  function itemSvg(it, pat) {
-    if (it.k === 'guide') return '<rect x="14" y="14" width="72" height="72" class="mx-guide"/>';
-    if (it.k === 'line') {
-      const [x1, y1, x2, y2] = SEGS[it.id];
-      return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="mx-line"/>`;
-    }
-    const { shape, s } = it, f = fillAttr(it.fill, pat), sw = s < 14 ? 2.2 : 3;
-    let body;
-    if (shape === 'circle') body = `<circle r="${s}" ${f}/>`;
-    else if (shape === 'half') body = `<circle r="${s}" class="f-white"/><path d="M${-s} 0A${s} ${s} 0 0 1 ${s} 0Z" class="f-black"/>`;
-    else if (shape === 'clock') {
-      body = `<circle r="${s}" ${f}/><line x1="0" y1="0" x2="0" y2="${r2(-s * 0.8)}" stroke-width="${sw * 1.5}" stroke-linecap="round"/>` +
-        `<circle r="${sw * 1.2}" class="f-black"/>`;
-    } else body = `<polygon points="${UNIT[shape].map(([x, y]) => r2(x * s) + ',' + r2(y * s)).join(' ')}" ${f}/>`;
+  function itemSvg(it) {
+    const { shape, s } = it, f = `class="f-${it.fill}"`, sw = s < 14 ? 2.2 : 3;
+    const body = shape === 'circle'
+      ? `<circle r="${s}" ${f}/>`
+      : `<polygon points="${UNIT[shape].map(([x, y]) => r2(x * s) + ',' + r2(y * s)).join(' ')}" ${f}/>`;
     return `<g transform="translate(${it.x} ${it.y})${it.rot ? ` rotate(${it.rot})` : ''}" stroke-width="${sw}">${body}</g>`;
   }
 
   let uid = 0;
   function figureSvg(cell, attrs = '') {
-    const pat = 'mxp' + (++uid);
-    return `<svg ${attrs} viewBox="0 0 100 100" aria-hidden="true" stroke="currentColor" stroke-linejoin="round">
-      <defs><pattern id="${pat}" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-        <rect width="5" height="5" class="f-white" stroke="none"/><line x1="0" y1="0" x2="0" y2="5" stroke-width="2"/>
-      </pattern></defs>${cell.map(it => itemSvg(it, pat)).join('')}</svg>`;
+    return `<svg ${attrs} viewBox="0 0 100 100" aria-hidden="true" stroke="currentColor" stroke-linejoin="round">` +
+      `${cell.map(itemSvg).join('')}</svg>`;
   }
 
   // ---- Rozstříhané zadání ----
