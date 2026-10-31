@@ -248,3 +248,26 @@ button.cell:focus-visible { outline: 3px solid var(--accent); outline-offset: -3
 .mx-opt.wrong .mx-letter { color: var(--danger); }
 .mx-rule { margin: 6px 0 0; }
 .btn:disabled { opacity: .5; cursor: not-allowed; filter: none; }
+
+/* Přepínače, časový limit a rozstříhané zadání */
+.toggles { display: flex; gap: 8px 20px; flex-wrap: wrap; }
+.mx-note { text-align: center; margin: 0 0 10px; color: var(--danger); font-weight: 600; }
+.mx-timer-row { display: flex; justify-content: center; margin: 0 0 12px; }
+.mx-timer-row:has(.mx-timer[hidden]) { display: none; }
+.mx-timer {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: 1.15rem;
+  padding: 4px 14px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.mx-timer.low { color: var(--danger); border-color: var(--danger); background: var(--danger-bg); }
+.mx-timer.paused { color: var(--muted); }
+
+.mx-scatter {
+  width: 100%;
+  border: 2px dashed var(--border); border-radius: 12px;
+  color: var(--fig);
+}
+.mx-scatter-svg { display: block; width: 100%; height: auto; }
+.mx-piece-edge { fill: none; stroke: var(--muted); stroke-width: 2; stroke-linejoin: round; }
+.mx-q-box { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 5; }
+.mx-q { fill: var(--muted); font: 700 46px system-ui, sans-serif; text-anchor: middle; dominant-baseline: middle; }

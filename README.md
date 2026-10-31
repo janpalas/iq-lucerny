@@ -41,6 +41,13 @@ a náročnosti prohledávání.
 otočení, poloha, skládání čar…). Jeden obrázek chybí a hráč vybírá správný z možností A–E.
 Po vyhodnocení se zobrazí vysvětlení pravidla.
 
+Přepínače nad zadáním:
+
+- **Rozstříhané zadání** – zadání se rozstříhá na 5–9 trojúhelníků, které se náhodně
+  rozházejí a pootočí (nepřekrývají se a jsou celé vidět). Po vyhodnocení se zobrazí složené.
+- **Časový limit 1 min** – odpočet na každou úlohu; když vyprší, úloha se nevyhodnotí
+  a rovnou se načte další.
+
 Úlohy generuje `matrix-puzzles.js` přímo v prohlížeči z pevného semínka, takže sada je pro
 všechny stejná (36 úloh: 12 lehkých, 12 středních, 12 těžkých). Nové typy pravidel se
 přidávají do objektu `FAMILIES` a do plánu `PLAN`; vykreslování obrázků je v `matrix.js`.

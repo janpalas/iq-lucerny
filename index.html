@@ -77,11 +77,30 @@
           <li>U mřížky 3×3 platí pravidlo v řádcích i ve sloupcích.</li>
           <li>Odhal pravidlo a vyber z možností <strong>A–E</strong> obrázek, který patří místo otazníku.</li>
           <li>Možnost lze zvolit i klávesou A–E.</li>
+          <li><strong>Rozstříhané zadání:</strong> zadání je rozstříhané na 5–9 trojúhelníků, které jsou náhodně rozházené a pootočené. Nejdřív si ho v duchu slož.</li>
+          <li><strong>Časový limit:</strong> na každou úlohu máš 1 minutu. Když čas vyprší, úloha se nevyhodnotí a pokračuje se další.</li>
         </ul>
       </details>
 
       <div class="toolbar">
         <span id="mx-info" class="info"></span>
+        <div class="toggles">
+          <label class="switch">
+            <input type="checkbox" id="mx-cut-toggle">
+            <span class="track"><span class="thumb"></span></span>
+            Rozstříhané zadání
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="mx-timer-toggle">
+            <span class="track"><span class="thumb"></span></span>
+            Časový limit 1 min
+          </label>
+        </div>
+      </div>
+
+      <p id="mx-note" class="mx-note" role="status" hidden>Čas na předchozí úlohu vypršel.</p>
+      <div class="mx-timer-row">
+        <span id="mx-timer" class="mx-timer" role="timer" aria-label="Zbývající čas" hidden></span>
       </div>
 
       <div class="mx-stage">
